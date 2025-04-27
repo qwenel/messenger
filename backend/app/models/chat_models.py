@@ -11,10 +11,13 @@ from sqlalchemy.orm import Mapped
 
 from sqlalchemy import ForeignKey
 
-from app.database.db import BASE
+# from app.database.db import BASE
 
 
-class Chat(BASE):
+class Chat:
+    """
+    SQLAlchemy модель Chat
+    """
     __tablename__ = "chat"
 
     id: Mapped[int] = Column(Integer, primary_key=True, unique=True, index=True)
@@ -30,20 +33,11 @@ class Chat(BASE):
         await session.refresh(self)
         return self
 
-    # @staticmethod
-    # async def get_by_hash(session, declaration_hash: str) -> "Declaration":
-    #     query = select(Declaration).where(Declaration.declaration_hash == declaration_hash)
-    #     result = await session.scalar(query)
-    #     return result
-    #
-    # @staticmethod
-    # async def get_by_id(session, declaration_id: uuid.UUID) -> "Declaration":
-    #     query = select(Declaration).where(Declaration.id == declaration_id)
-    #     result = await session.scalar(query)
-    #     return result
 
-
-class User(BASE):
+class User:
+    """
+    SQLAlchemy модель User
+    """
     __tablename__ = "user"
 
     id: Mapped[str] = Column(String, primary_key=True, unique=True, index=True)
@@ -62,7 +56,10 @@ class User(BASE):
         return self
 
 
-class ChatToUser(BASE):
+class ChatToUser:
+    """
+    SQLAlchemy модель ChatToUser
+    """
     __tablename__ = "chat_to_user"
 
     id: Mapped[int] = Column(Integer, primary_key=True, unique=True, index=True)
@@ -80,7 +77,10 @@ class ChatToUser(BASE):
         return self
 
 
-class Message(BASE):
+class Message:
+    """
+    SQLAlchemy модель Message
+    """
     __tablename__ = "message"
 
     id: Mapped[int] = Column(Integer, primary_key=True, unique=True, index=True)
@@ -100,7 +100,10 @@ class Message(BASE):
         return self
 
 
-class Role(BASE):
+class Role:
+    """
+    SQLAlchemy модель Role
+    """
     __tablename__ = "role"
 
     id: Mapped[int] = Column(Integer, primary_key=True, unique=True, index=True)
@@ -116,7 +119,10 @@ class Role(BASE):
         return self
 
 
-class Attachment(BASE):
+class Attachment:
+    """
+    SQLAlchemy модель Attachment
+    """
     __tablename__ = "attachment"
 
     id: Mapped[int] = Column(Integer, primary_key=True, unique=True, index=True)

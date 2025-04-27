@@ -8,7 +8,17 @@ websockets_router = APIRouter()
 
 @websockets_router.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: str):
+    """
+    Функция обработчик вебсокет-соединений
+    Слушает все приходящие сообщения и отправляет по нужным каналам пользователям слушателям
 
+    :param websocket: FastAPI объект вебсокета
+    :type websocket: fastapi.Request
+    :param client_id: Идентификатор пользователя, подключенного к серверу 
+    :type client_id: str
+
+    :return: None
+    """
     user = user_manager.users.get(client_id)
 
     await connection_manager.connect(websocket)
