@@ -1,5 +1,3 @@
-from urllib import request
-
 from fastapi import Request, Form
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -36,7 +34,7 @@ async def login(request: Request, username: str = Form(...), password: str = For
             return templates.TemplateResponse("login.html", {"request": request, "error": result["message"]})
         return RedirectResponse(url=f"""/{result["id"]}""", status_code=302)
 
-    result = await user_manager.login(name=username, password=password)
+    result = await user_manager.login(name=username, password=password, host=request.client.host)
     if result["code"] == 0:
         return templates.TemplateResponse("login.html", {"request": request, "error": result["message"]})
     return RedirectResponse(url=f"""/{result["id"]}""", status_code=302)

@@ -37,13 +37,13 @@ class UserManager:
         return {"code": 1, "message": f"Пользователь {name} успешно зарегистрирован", "id": user_id}
 
     async def login(self, name: str, password: str, host: str) -> dict[str, Any]:
-        user_id = get_sha256_hash(name)
+        user_id = await get_sha256_hash(name)
 
         if self.users.get(user_id) is None or self.users.get(user_id).password != password:
             return {"code": 0, "message": "Логин или пароль введены неверно"}
 
         self.users[user_id].hosts.add(host)
-        return {"code": 1, "message": "Пользователь авторизован"}
+        return {"code": 1, "message": "Пользователь авторизован", "id": user_id}
 
     async def remove_user(self, user: User):
         del self.users[user.user_id]

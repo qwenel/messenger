@@ -1,3 +1,4 @@
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -11,7 +12,7 @@ from app.api.websockets import websockets_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
 
-    print("server is running")
+    logging.info("server is running")
     yield
 
 
