@@ -1,6 +1,6 @@
 from fastapi import WebSocket
 
-from backend.app.utils.hash_generator import get_sha256_hash_chat
+from app.utils.hash_generator import get_sha256_hash_chat
 
 
 class ConnectionManager:

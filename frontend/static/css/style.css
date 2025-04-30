@@ -1,0 +1,427 @@
+/* Общие стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+    min-height: 100vh;  /* Изменили на min-height, чтобы предотвратить проблему с прокруткой */
+    margin: 0;  /* Убираем лишние отступы */
+    display: flex;
+    flex-direction: column;  /* Чтобы дочерние элементы располагались вертикально */
+}
+
+/* Стили для шапки */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 30px 20px;  /* Увеличиваем верхний и нижний отступы */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* Центрируем по вертикали */
+    position: relative;
+    z-index: 1;
+}
+
+/* Логотип */
+header .logo {
+    width: 70px; /* Размер логотипа */
+    height: 70px;
+    border-radius: 20%; /* Закругление углов */
+    margin-right: 20px; /* Отступ между логотипом и названием */
+}
+
+/* Заголовок */
+header h1 {
+    margin: 0; /* Убираем отступы */
+    font-size: 2rem; /* Размер шрифта */
+    display: inline-block; 
+    line-height: 1;  /* Убираем лишний межстрочный интервал */
+}
+
+/* Темная тема для шапки */
+body.dark-mode header {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+/* Список чатов (Sidebar) */
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    height: calc(100% - 140px); /* Исправляем высоту sidebar, чтобы не было лишнего пространства */
+    overflow-y: auto;
+    position: fixed;
+    top: 130px; /* Убираем top: 0; чтобы избежать перекрытия шапки */
+    bottom: 0;
+}
+
+.chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.chat-item:hover {
+    background-color: #f1f1f1;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column; /* Сделаем элементы вертикальными */
+    justify-content: flex-start;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.last-message {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 4px; /* Добавляем небольшой отступ сверху */
+}
+
+/* Темная тема для sidebar */
+body.dark-mode .sidebar {
+    background-color: #495057;
+    color: #f8f9fa;
+}
+
+body.dark-mode .chat-item {
+    border-bottom: 1px solid #6c757d;
+}
+
+body.dark-mode .chat-item:hover {
+    background-color: #6c757d;
+}
+
+
+/* Основная область чата */
+.chat-main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Это позволяет chat-main занимать оставшееся пространство */
+    background-color: #ffffff;
+    margin-left: 250px; /* Отступ для sidebar */
+    padding: 10px;
+    height: calc(100% - 50px); /* Высота контейнера чата, чтобы он не перекрывал шапку */
+    margin-top: -22px; /* Отступ сверху, чтобы не перекрывать шапку */
+}
+
+/* Темная тема для основного чата */
+body.dark-mode .chat-main {
+    background-color: #495057;
+    color: #f8f9fa;
+}
+
+/* Сообщения */
+.messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Темная тема */
+body.dark-mode {
+    background-color: #343a40;
+    color: #f8f9fa; /* Светлый текст в тёмной теме */
+}
+
+/* Контейнер для всех элементов */
+.container {
+    max-width: 900px;
+    margin: 0 auto; /* Центрируем контейнер */
+    flex-grow: 1; /* Контейнер должен занимать оставшееся пространство */
+}
+
+/* Кнопка переключения темы */
+.switch-theme {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 30px; /* Увеличиваем размер шрифта */
+    padding: 10px 15px; /* Добавляем отступы, чтобы кнопка была более крупной */
+    border-radius: 50%; /* Сделаем кнопку круглой */
+    transition: transform 0.3s ease;
+}
+
+
+body.dark-mode .switch-theme {
+    color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .switch-theme {
+        font-size: 28px; /* Немного уменьшить для мобильных устройств */
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* Лента сообщений */
+#messages-container {
+    flex-grow: 1; /* Это позволяет контейнеру сообщений занять оставшуюся высоту */
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto; /* Разрешаем прокрутку по вертикали */
+}
+
+/* Темная тема для ленты сообщений */
+body.dark-mode #messages-container {
+    background-color: #495057;
+}
+
+/* Темная тема для ленты сообщений */
+body.dark-mode #messages-container {
+    background-color: #495057;
+}
+
+/* Сообщения */
+#messages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* Скрыть скроллбар в списке сообщений для браузеров на основе WebKit */
+#messages::-webkit-scrollbar {
+    display: none;
+}
+
+/* Сообщение */
+#messages li {
+    max-width: 70%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 20px;
+    word-wrap: break-word;
+    transition: all 0.3s ease;
+}
+
+
+
+body.dark-mode #messages li {
+    background: #6c757d;
+    color: #f8f9fa;
+}
+
+body.dark-mode #messages li {
+    background: #495057;
+    color: #f8f9fa;
+}
+
+.message-sent {
+    background-color: #0d6efd;
+    color: white;
+    margin-left: auto;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+/* Темная тема для отправленных сообщений */
+body.dark-mode .message-sent {
+    background-color: #0b5ed7;
+}
+
+
+/* Сообщения, полученные */
+.message-received {
+    background-color: #e9ecef;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+/* Темная тема для полученных сообщений */
+body.dark-mode .message-received {
+    background-color: #6c757d;
+    color: #f8f9fa;
+}
+
+body.dark-mode .message-sent {
+    background-color: #0b5ed7;
+}
+
+body.dark-mode .message-received {
+    background-color: #6c757d;
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+body.dark-mode button {
+    background-color: #0056b3;
+    color: white;
+}
+
+body.dark-mode button:hover {
+    background-color: #003f7f;
+}
+
+/* Модальное окно */
+.modal-content {
+    background-color: #f8f9fa;
+    color: #343a40;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .modal-content {
+    background-color: #495057;
+    color: #f8f9fa;
+}
+
+/* Анимация для появления сообщений */
+.fade-in-message {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Немного улучшим скроллинг сообщений */
+#messages {
+    scrollbar-width: thin;
+    scrollbar-color: #ad9e9e #ffffff;
+}
+
+/* Стили для страницы логина */
+body.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.container.login {
+    max-width: 400px;
+}
+
+/* Обновляем форму */
+form {
+    width: 100%;
+}
+
+/* Улучшаем положение контента */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили для переключателя темы на мобильных устройствах */
+@media (max-width: 768px) {
+    .switch-theme {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+.message-sent {
+    background-color: #0d6efd;
+    color: white;
+    margin-left: auto;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+.message-received {
+    background-color: #e9ecef;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+/* Поле ввода сообщения */
+/* Поле ввода сообщения */
+.input-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+textarea {
+    width: 80%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Кнопка переключения темы */
+.switch-theme {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.switch-theme:hover {
+    transform: scale(1.2);
+}
