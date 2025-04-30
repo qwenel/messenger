@@ -1,0 +1,10 @@
+Database Connection
+===================
+
+.. automodule:: app.database.db
+   :members:
+   :undoc-members:
+
+.. automodule:: app.helpers.db
+   :members:
+   :undoc-members:

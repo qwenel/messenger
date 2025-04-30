@@ -6,7 +6,9 @@ async def get_sha256_hash(input_string):
     Функция для получения SHA-256 хэша из строки.
 
     :param input_string: Исходная строка для хэширования.
+    :type input_string: str
     :return: Хэш в виде шестнадцатеричной строки.
+    :rtype: str
     """
     sha256_hash = hashlib.sha256()
 
@@ -20,7 +22,9 @@ async def get_sha256_hash_chat(input_string):
     Функция для получения SHA-256 хэша из строки для создания чата.
 
     :param input_string: Исходная строка для хэширования.
+    :type input_string: str
     :return: Хэш в виде шестнадцатеричной строки.
+    :rtype: str
     """
     sha256_hash = hashlib.sha256()
 
